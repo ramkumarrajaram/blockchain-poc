@@ -1,0 +1,38 @@
+{
+  "name": "zero-knowledge-proof",
+  "version": "1.0.0",
+  "description": "POC for zero knowledge proofs",
+  "main": "index.js",
+  "scripts": {
+    "build-circom": "npm run compile-verifier && npm run setup && npm run generateverifier",
+    "compile-verifier": "mkdir -p build && circom src/zk-circuits/sudoku.circom -o build/circuit.json",
+    "setup": "snarkjs setup --protocol groth -c build/circuit.json --pk build/provingKey.json --vk build/verifyingKey.json",
+    "generateverifier": "snarkjs generateverifier --pk build/provingKey.json --vk build/verifyingKey.json -v build/Verifier.sol"
+  },
+  "author": "Ramkumar Rajaram",
+  "license": "ISC",
+  "devDependencies": {
+    "@nomiclabs/hardhat-web3": "^2.0.0",
+    "abi-decoder": "^2.4.0",
+    "hardhat": "^2.14.0",
+    "nodemon": "^2.0.22",
+    "solc": "^0.8.19",
+    "ts-node": "^10.9.1",
+    "tsconfig-paths": "^4.2.0",
+    "typescript": "^5.0.4"
+  },
+  "dependencies": {
+    "@alch/alchemy-web3": "^1.4.7",
+    "@ethereumjs/tx": "^4.1.2",
+    "@nomiclabs/hardhat-ethers": "^2.2.3",
+    "circom": "^0.5.46",
+    "circomlib": "^2.0.5",
+    "dotenv": "^16.0.3",
+    "ethereum-waffle": "^4.0.10",
+    "ethereumjs-tx": "^2.1.2",
+    "ethers": "^5.7.2",
+    "hardhat-waffle": "^0.0.1-security",
+    "snarkjs": "^0.6.11",
+    "web3": "^1.10.0"
+  }
+}
